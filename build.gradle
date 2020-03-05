@@ -277,7 +277,6 @@ project(':conformance:conformance-jvm') {
     }
 }
 
-/*
 project(':conformance:conformance-native') {
     apply plugin: 'konan'
     konanArtifacts {
@@ -292,7 +291,6 @@ project(':conformance:conformance-native') {
         expectedBy project(':conformance:conformance-common')
     }
 }
-*/
 
 import java.nio.file.Paths
 allprojects {
