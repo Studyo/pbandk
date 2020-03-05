@@ -113,7 +113,6 @@ project(':runtime:runtime-jvm') {
     publishSettings(project, archivesBaseName, 'JVM library for pbandk protobuf code')
 }
 
-/*
 project(':runtime:runtime-native') {
     apply plugin: 'konan'
     konanArtifacts {
@@ -125,7 +124,6 @@ project(':runtime:runtime-native') {
         expectedBy project(':runtime:runtime-common')
     }
 }
-*/
 
 project(':protoc-gen-kotlin:protoc-gen-kotlin-common') {
     apply plugin: 'kotlin-platform-common'

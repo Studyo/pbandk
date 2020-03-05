@@ -11,3 +11,7 @@ include ':conformance:conformance-common',
         ':runtime:runtime-js',
         ':runtime:runtime-jvm'
         //':runtime:runtime-native'
+        ':runtime:runtime-jvm',
+        ':runtime:runtime-native'
+
+enableFeaturePreview('GRADLE_METADATA')
