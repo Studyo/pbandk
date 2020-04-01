@@ -15,6 +15,7 @@ kotlin {
     jvm {
         withJava()
     }
+
     js {
         useCommonJs()
 
@@ -22,6 +23,14 @@ kotlin {
 
         nodejs {}
     }
+
+    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos")?:false
+    if(onPhone){
+        iosArm64("ios")
+    }else{
+        iosX64("ios")
+    }
+
     // For ARM, should be changed to iosArm32 or iosArm64
     // For Linux, should be changed to e.g. linuxX64
     // For MacOS, should be changed to e.g. macosX64
@@ -57,10 +66,11 @@ kotlin {
         implementation(kotlin("test-js"))
     }
 
-    //    sourceSets["macosMain"].dependencies {
-    //    }
-    //    sourceSets["macosTest"].dependencies {
-    //    }
+    sourceSets["iosMain"].dependencies {
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlin_serialization}")
+    }
+    //sourceSets["macosTest"].dependencies {
+    //}
 }
 
 tasks.register("generateWellKnownTypes") {
