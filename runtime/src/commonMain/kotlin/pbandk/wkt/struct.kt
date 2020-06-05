@@ -27,21 +27,14 @@ data class Struct(
     override operator fun plus(other: Struct?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<Struct> {
         val defaultInstance by lazy { Struct() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = Struct.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = Struct.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): Struct { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("fields")
-        val fields: Map<String, pbandk.wkt.Value.JsonMapper?> = emptyMap()
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 
     data class FieldsEntry(
         override val key: String = "",
@@ -51,23 +44,14 @@ data class Struct(
         override operator fun plus(other: Struct.FieldsEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<Struct.FieldsEntry> {
             val defaultInstance by lazy { Struct.FieldsEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = Struct.FieldsEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = Struct.FieldsEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): Struct.FieldsEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: String? = null,
-            @SerialName("value")
-            val value: pbandk.wkt.Value.JsonMapper? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 }
 
@@ -100,31 +84,14 @@ data class Value(
     override operator fun plus(other: Value?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<Value> {
         val defaultInstance by lazy { Value() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = Value.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = Value.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): Value { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("null_value")
-        val nullValue: String? = null,
-        @SerialName("number_value")
-        val numberValue: Double? = null,
-        @SerialName("string_value")
-        val stringValue: String? = null,
-        @SerialName("bool_value")
-        val boolValue: Boolean? = null,
-        @SerialName("struct_value")
-        val structValue: pbandk.wkt.Struct.JsonMapper? = null,
-        @SerialName("list_value")
-        val listValue: pbandk.wkt.ListValue.JsonMapper? = null
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 }
 
 data class ListValue(
@@ -134,21 +101,14 @@ data class ListValue(
     override operator fun plus(other: ListValue?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<ListValue> {
         val defaultInstance by lazy { ListValue() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = ListValue.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = ListValue.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): ListValue { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("values")
-        val values: List<pbandk.wkt.Value.JsonMapper> = emptyList()
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 }
 
 fun Struct?.orDefault() = this ?: Struct.defaultInstance
@@ -177,24 +137,6 @@ private fun Struct.Companion.protoUnmarshalImpl(protoUnmarshal: pbandk.Unmarshal
         10 -> fields = protoUnmarshal.readMap(fields, pbandk.wkt.Struct.FieldsEntry.Companion, true)
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun Struct.toJsonMapperImpl(): Struct.JsonMapper =
-    Struct.JsonMapper(
-        fields.mapValues { it.value?.toJsonMapper() }
-    )
-
-private fun Struct.JsonMapper.toMessageImpl(): Struct =
-    Struct(
-        fields = fields.mapValues { it.value?.toMessage() }
-    )
-
-private fun Struct.jsonMarshalImpl(json: Json): String =
-    json.stringify(Struct.JsonMapper.serializer(), toJsonMapper())
-
-private fun Struct.Companion.jsonUnmarshalImpl(json: Json, data: String): Struct {
-    val mapper = json.parse(Struct.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun Struct.FieldsEntry?.orDefault() = this ?: Struct.FieldsEntry.defaultInstance
@@ -227,26 +169,6 @@ private fun Struct.FieldsEntry.Companion.protoUnmarshalImpl(protoUnmarshal: pban
         18 -> value = protoUnmarshal.readMessage(pbandk.wkt.Value.Companion)
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun Struct.FieldsEntry.toJsonMapperImpl(): Struct.FieldsEntry.JsonMapper =
-    Struct.FieldsEntry.JsonMapper(
-        key.takeIf { it != "" },
-        value?.toJsonMapper()
-    )
-
-private fun Struct.FieldsEntry.JsonMapper.toMessageImpl(): Struct.FieldsEntry =
-    Struct.FieldsEntry(
-        key = key ?: "",
-        value = value?.toMessage()
-    )
-
-private fun Struct.FieldsEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(Struct.FieldsEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun Struct.FieldsEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): Struct.FieldsEntry {
-    val mapper = json.parse(Struct.FieldsEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun Value?.orDefault() = this ?: Value.defaultInstance
@@ -301,35 +223,6 @@ private fun Value.Companion.protoUnmarshalImpl(protoUnmarshal: pbandk.Unmarshall
     }
 }
 
-private fun Value.toJsonMapperImpl(): Value.JsonMapper =
-    Value.JsonMapper(
-        nullValue?.name,
-        numberValue,
-        stringValue.takeIf { it != "" },
-        boolValue,
-        structValue?.toJsonMapper(),
-        listValue?.toJsonMapper()
-    )
-
-private fun Value.JsonMapper.toMessageImpl(): Value =
-    Value(
-        kind = 
-            nullValue?.let { value -> Value.Kind.NullValue(value.let { pbandk.wkt.NullValue.fromName(it) }) }
-             ?: numberValue?.let { value -> Value.Kind.NumberValue(value) }
-             ?: stringValue?.let { value -> Value.Kind.StringValue(value) }
-             ?: boolValue?.let { value -> Value.Kind.BoolValue(value) }
-             ?: structValue?.let { value -> Value.Kind.StructValue(value.toMessage()) }
-             ?: listValue?.let { value -> Value.Kind.ListValue(value.toMessage()) }
-    )
-
-private fun Value.jsonMarshalImpl(json: Json): String =
-    json.stringify(Value.JsonMapper.serializer(), toJsonMapper())
-
-private fun Value.Companion.jsonUnmarshalImpl(json: Json, data: String): Value {
-    val mapper = json.parse(Value.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun ListValue?.orDefault() = this ?: ListValue.defaultInstance
 
 private fun ListValue.protoMergeImpl(plus: ListValue?): ListValue = plus?.copy(
@@ -356,22 +249,4 @@ private fun ListValue.Companion.protoUnmarshalImpl(protoUnmarshal: pbandk.Unmars
         10 -> values = protoUnmarshal.readRepeatedMessage(values, pbandk.wkt.Value.Companion, true)
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun ListValue.toJsonMapperImpl(): ListValue.JsonMapper =
-    ListValue.JsonMapper(
-        values.map { it.toJsonMapper() }
-    )
-
-private fun ListValue.JsonMapper.toMessageImpl(): ListValue =
-    ListValue(
-        values = values.map { it.toMessage() }
-    )
-
-private fun ListValue.jsonMarshalImpl(json: Json): String =
-    json.stringify(ListValue.JsonMapper.serializer(), toJsonMapper())
-
-private fun ListValue.Companion.jsonUnmarshalImpl(json: Json, data: String): ListValue {
-    val mapper = json.parse(ListValue.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }

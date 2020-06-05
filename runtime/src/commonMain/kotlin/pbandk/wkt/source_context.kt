@@ -12,21 +12,14 @@ data class SourceContext(
     override operator fun plus(other: SourceContext?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<SourceContext> {
         val defaultInstance by lazy { SourceContext() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = SourceContext.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = SourceContext.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): SourceContext { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("file_name")
-        val fileName: String? = null
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 }
 
 fun SourceContext?.orDefault() = this ?: SourceContext.defaultInstance
@@ -54,22 +47,4 @@ private fun SourceContext.Companion.protoUnmarshalImpl(protoUnmarshal: pbandk.Un
         10 -> fileName = protoUnmarshal.readString()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun SourceContext.toJsonMapperImpl(): SourceContext.JsonMapper =
-    SourceContext.JsonMapper(
-        fileName.takeIf { it != "" }
-    )
-
-private fun SourceContext.JsonMapper.toMessageImpl(): SourceContext =
-    SourceContext(
-        fileName = fileName ?: ""
-    )
-
-private fun SourceContext.jsonMarshalImpl(json: Json): String =
-    json.stringify(SourceContext.JsonMapper.serializer(), toJsonMapper())
-
-private fun SourceContext.Companion.jsonUnmarshalImpl(json: Json, data: String): SourceContext {
-    val mapper = json.parse(SourceContext.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }

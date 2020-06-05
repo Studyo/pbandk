@@ -9,6 +9,6 @@ expect object Util {
     fun base64ToBytes(str: String): ByteArray
     fun bytesToBase64(bytes: ByteArray): String
 
-    fun timestampToString(ts: Timestamp.JsonMapper): String
-    fun stringToTimestamp(str: String): Timestamp.JsonMapper
+    fun timestampToString(ts: Timestamp): String
+    fun stringToTimestamp(str: String): Timestamp
 }

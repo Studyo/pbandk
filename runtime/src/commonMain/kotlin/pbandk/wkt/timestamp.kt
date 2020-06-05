@@ -13,23 +13,14 @@ data class Timestamp(
     override operator fun plus(other: Timestamp?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<Timestamp> {
         val defaultInstance by lazy { Timestamp() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = Timestamp.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = Timestamp.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): Timestamp { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("seconds")
-        val seconds: Long? = null,
-        @SerialName("nanos")
-        val nanos: Int? = null
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 }
 
 fun Timestamp?.orDefault() = this ?: Timestamp.defaultInstance
@@ -61,24 +52,4 @@ private fun Timestamp.Companion.protoUnmarshalImpl(protoUnmarshal: pbandk.Unmars
         16 -> nanos = protoUnmarshal.readInt32()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun Timestamp.toJsonMapperImpl(): Timestamp.JsonMapper =
-    Timestamp.JsonMapper(
-        seconds,
-        nanos
-    )
-
-private fun Timestamp.JsonMapper.toMessageImpl(): Timestamp =
-    Timestamp(
-        seconds = seconds ?: 0L,
-        nanos = nanos ?: 0
-    )
-
-private fun Timestamp.jsonMarshalImpl(json: Json): String =
-    json.stringify(Timestamp.JsonMapper.serializer(), toJsonMapper())
-
-private fun Timestamp.Companion.jsonUnmarshalImpl(json: Json, data: String): Timestamp {
-    val mapper = json.parse(Timestamp.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }

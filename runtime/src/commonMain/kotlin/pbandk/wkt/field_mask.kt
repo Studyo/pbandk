@@ -12,21 +12,14 @@ data class FieldMask(
     override operator fun plus(other: FieldMask?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<FieldMask> {
         val defaultInstance by lazy { FieldMask() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = FieldMask.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = FieldMask.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): FieldMask { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("paths")
-        val paths: List<String> = emptyList()
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 }
 
 fun FieldMask?.orDefault() = this ?: FieldMask.defaultInstance
@@ -55,22 +48,4 @@ private fun FieldMask.Companion.protoUnmarshalImpl(protoUnmarshal: pbandk.Unmars
         10 -> paths = protoUnmarshal.readRepeated(paths, protoUnmarshal::readString, true)
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun FieldMask.toJsonMapperImpl(): FieldMask.JsonMapper =
-    FieldMask.JsonMapper(
-        paths
-    )
-
-private fun FieldMask.JsonMapper.toMessageImpl(): FieldMask =
-    FieldMask(
-        paths = paths ?: emptyList()
-    )
-
-private fun FieldMask.jsonMarshalImpl(json: Json): String =
-    json.stringify(FieldMask.JsonMapper.serializer(), toJsonMapper())
-
-private fun FieldMask.Companion.jsonUnmarshalImpl(json: Json, data: String): FieldMask {
-    val mapper = json.parse(FieldMask.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }

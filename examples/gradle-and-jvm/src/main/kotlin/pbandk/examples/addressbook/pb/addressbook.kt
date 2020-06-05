@@ -16,29 +16,14 @@ data class Person(
     override operator fun plus(other: Person?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<Person> {
         val defaultInstance by lazy { Person() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = Person.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = Person.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): Person { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("name")
-        val name: String? = null,
-        @SerialName("id")
-        val id: Int? = null,
-        @SerialName("email")
-        val email: String? = null,
-        @SerialName("phones")
-        val phones: List<pbandk.examples.addressbook.pb.Person.PhoneNumber.JsonMapper> = emptyList(),
-        @SerialName("lastUpdated")
-        val lastUpdated: pbandk.wkt.Timestamp.JsonMapper? = null
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 
     sealed class PhoneType(override val value: Int, override val name: String? = null) : pbandk.Message.Enum {
         override fun equals(other: kotlin.Any?) = other is Person.PhoneType && other.value == value
@@ -65,23 +50,14 @@ data class Person(
         override operator fun plus(other: Person.PhoneNumber?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<Person.PhoneNumber> {
             val defaultInstance by lazy { Person.PhoneNumber() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = Person.PhoneNumber.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = Person.PhoneNumber.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): Person.PhoneNumber { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("number")
-            val number: String? = null,
-            @SerialName("type")
-            val type: String? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 }
 
@@ -92,21 +68,14 @@ data class AddressBook(
     override operator fun plus(other: AddressBook?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<AddressBook> {
         val defaultInstance by lazy { AddressBook() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = AddressBook.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = AddressBook.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): AddressBook { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("people")
-        val people: List<pbandk.examples.addressbook.pb.Person.JsonMapper> = emptyList()
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 }
 
 fun Person?.orDefault() = this ?: Person.defaultInstance
@@ -155,32 +124,6 @@ private fun Person.Companion.protoUnmarshalImpl(protoUnmarshal: pbandk.Unmarshal
     }
 }
 
-private fun Person.toJsonMapperImpl(): Person.JsonMapper =
-    Person.JsonMapper(
-        name.takeIf { it != "" },
-        id,
-        email.takeIf { it != "" },
-        phones.map { it.toJsonMapper() },
-        lastUpdated?.toJsonMapper()
-    )
-
-private fun Person.JsonMapper.toMessageImpl(): Person =
-    Person(
-        name = name ?: "",
-        id = id ?: 0,
-        email = email ?: "",
-        phones = phones.map { it.toMessage() },
-        lastUpdated = lastUpdated?.toMessage()
-    )
-
-private fun Person.jsonMarshalImpl(json: Json): String =
-    json.stringify(Person.JsonMapper.serializer(), toJsonMapper())
-
-private fun Person.Companion.jsonUnmarshalImpl(json: Json, data: String): Person {
-    val mapper = json.parse(Person.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun Person.PhoneNumber?.orDefault() = this ?: Person.PhoneNumber.defaultInstance
 
 private fun Person.PhoneNumber.protoMergeImpl(plus: Person.PhoneNumber?): Person.PhoneNumber = plus?.copy(
@@ -212,26 +155,6 @@ private fun Person.PhoneNumber.Companion.protoUnmarshalImpl(protoUnmarshal: pban
     }
 }
 
-private fun Person.PhoneNumber.toJsonMapperImpl(): Person.PhoneNumber.JsonMapper =
-    Person.PhoneNumber.JsonMapper(
-        number.takeIf { it != "" },
-        type?.name
-    )
-
-private fun Person.PhoneNumber.JsonMapper.toMessageImpl(): Person.PhoneNumber =
-    Person.PhoneNumber(
-        number = number ?: "",
-        type = type?.let { pbandk.examples.addressbook.pb.Person.PhoneType.fromName(it) } ?: pbandk.examples.addressbook.pb.Person.PhoneType.fromValue(0)
-    )
-
-private fun Person.PhoneNumber.jsonMarshalImpl(json: Json): String =
-    json.stringify(Person.PhoneNumber.JsonMapper.serializer(), toJsonMapper())
-
-private fun Person.PhoneNumber.Companion.jsonUnmarshalImpl(json: Json, data: String): Person.PhoneNumber {
-    val mapper = json.parse(Person.PhoneNumber.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun AddressBook?.orDefault() = this ?: AddressBook.defaultInstance
 
 private fun AddressBook.protoMergeImpl(plus: AddressBook?): AddressBook = plus?.copy(
@@ -258,22 +181,4 @@ private fun AddressBook.Companion.protoUnmarshalImpl(protoUnmarshal: pbandk.Unma
         10 -> people = protoUnmarshal.readRepeatedMessage(people, pbandk.examples.addressbook.pb.Person.Companion, true)
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun AddressBook.toJsonMapperImpl(): AddressBook.JsonMapper =
-    AddressBook.JsonMapper(
-        people.map { it.toJsonMapper() }
-    )
-
-private fun AddressBook.JsonMapper.toMessageImpl(): AddressBook =
-    AddressBook(
-        people = people.map { it.toMessage() }
-    )
-
-private fun AddressBook.jsonMarshalImpl(json: Json): String =
-    json.stringify(AddressBook.JsonMapper.serializer(), toJsonMapper())
-
-private fun AddressBook.Companion.jsonUnmarshalImpl(json: Json, data: String): AddressBook {
-    val mapper = json.parse(AddressBook.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }

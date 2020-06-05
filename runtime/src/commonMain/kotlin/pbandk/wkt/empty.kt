@@ -11,18 +11,14 @@ data class Empty(
     override operator fun plus(other: Empty?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<Empty> {
         val defaultInstance by lazy { Empty() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = Empty.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = Empty.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): Empty { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    class JsonMapper {
-        fun toMessage() = toMessageImpl()
-    }
 }
 
 fun Empty?.orDefault() = this ?: Empty.defaultInstance
@@ -46,20 +42,4 @@ private fun Empty.Companion.protoUnmarshalImpl(protoUnmarshal: pbandk.Unmarshall
         0 -> return Empty(protoUnmarshal.unknownFields())
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun Empty.toJsonMapperImpl(): Empty.JsonMapper =
-    Empty.JsonMapper(
-    )
-
-private fun Empty.JsonMapper.toMessageImpl(): Empty =
-    Empty(
-    )
-
-private fun Empty.jsonMarshalImpl(json: Json): String =
-    json.stringify(Empty.JsonMapper.serializer(), toJsonMapper())
-
-private fun Empty.Companion.jsonUnmarshalImpl(json: Json, data: String): Empty {
-    val mapper = json.parse(Empty.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }

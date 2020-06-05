@@ -32,6 +32,9 @@ fun runGenerator(request: CodeGeneratorRequest): CodeGeneratorResponse {
 
         val needToGenerate = request.fileToGenerate.contains(protoFile.name)
 
+        // TODO figure out how to connect this to a config or something.
+        val generateJson = true
+
         // Convert the file to our model
         val file = FileBuilder.buildFile(FileBuilder.Context(protoFile, params.let {
             // As a special case, if we're not generating it but it's a well-known type package, change it our known one
@@ -49,7 +52,7 @@ fun runGenerator(request: CodeGeneratorRequest): CodeGeneratorResponse {
             val filePath = (file.kotlinPackageName?.replace('.', '/')?.plus('/') ?: "") +
                 fileNameSansPath.removeSuffix(".proto") + ".kt"
             debug { "Generating $filePath" }
-            val code = CodeGenerator(file, kotlinTypeMappings, params).generate()
+            val code = CodeGenerator(file = file, kotlinTypeMappings = kotlinTypeMappings, params = params, generateJson = generateJson).generate()
 
             // Do service gen if generator present
             var extraServiceCode = ""

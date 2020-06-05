@@ -1,6 +1,6 @@
 package pbandk.gen
 
-open class CodeGenerator(val file: File, val kotlinTypeMappings: Map<String, String>, val params: Map<String, String>) {
+open class CodeGenerator(val file: File, val kotlinTypeMappings: Map<String, String>, val params: Map<String, String>, val generateJson: Boolean = false) {
     protected val bld = StringBuilder()
     protected var indent = ""
 
@@ -75,15 +75,26 @@ open class CodeGenerator(val file: File, val kotlinTypeMappings: Map<String, Str
             line("override operator fun plus(other: ${typeName}?) = protoMergeImpl(other)")
             line("override val protoSize by lazy { protoSizeImpl() }")
             line("override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)")
-            line("override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)")
-            line("fun toJsonMapper() = toJsonMapperImpl()")
+            if (generateJson) {
+                line("override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)")
+                line("fun toJsonMapper() = toJsonMapperImpl()")
+            } else {
+                line("override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException(\"Json support is disabled\") }")
+            }
             line("companion object : pbandk.Message.Companion<${typeName}> {").indented {
                 line("val defaultInstance by lazy { ${typeName}() }")
                 line("override fun protoUnmarshal(u: pbandk.Unmarshaller) = ${typeName}.protoUnmarshalImpl(u)")
-                line("override fun jsonUnmarshal(json: Json, data: String) = ${typeName}.jsonUnmarshalImpl(json, data)")
+                if (generateJson) {
+                    line("override fun jsonUnmarshal(json: Json, data: String) = ${typeName}.jsonUnmarshalImpl(json, data)")
+                } else {
+                    line("override fun jsonUnmarshal(json: Json, data: String): ${typeName} { throw UnsupportedOperationException(\"Json support is disabled\")\n }")
+
+                }
             }.line("}")
             line()
-            writeJsonMapperClass(type)
+            if (generateJson) {
+                writeJsonMapperClass(type)
+            }
             // Nested enums and types
             type.nestedTypes.forEach { writeType(it,typeName) }
         }.line("}")
@@ -155,10 +166,12 @@ open class CodeGenerator(val file: File, val kotlinTypeMappings: Map<String, Str
         writeMessageSizeExtension(type, fullTypeName)
         writeMessageProtoMarshalExtension(type, fullTypeName)
         writeMessageProtoUnmarshalExtension(type, fullTypeName)
-        writeMessageToJsonMapperExtension(type, fullTypeName)
-        writeJsonMapperToMessageExtension(type, fullTypeName)
-        writeMessageJsonMarshalExtension(type, fullTypeName)
-        writeMessageJsonUnmarshalExtension(type, fullTypeName)
+        if (generateJson) {
+            writeMessageToJsonMapperExtension(type, fullTypeName)
+            writeJsonMapperToMessageExtension(type, fullTypeName)
+            writeMessageJsonMarshalExtension(type, fullTypeName)
+            writeMessageJsonUnmarshalExtension(type, fullTypeName)
+        }
         type.nestedTypes.mapNotNull { it as? File.Type.Message }.forEach { writeMessageExtensions(it, fullTypeName) }
     }
 

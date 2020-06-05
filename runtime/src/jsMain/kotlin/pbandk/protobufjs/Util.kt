@@ -22,11 +22,11 @@ object Util {
     fun base64ToBytes(str: String) = js("Buffer").from(str, "base64")
     fun bytesToBase64(bytes: ByteArray) = js("Buffer").from(bytes).toString("base64")
 
-    fun timestampToString(ts: Timestamp.JsonMapper) =
+    fun timestampToString(ts: Timestamp) =
         Date(((ts.seconds ?: 0) * 1000) + ((ts.nanos ?: 0) / 1_000_000)).toISOString()
 
     fun stringToTimestamp(str: String) = Date(str).getTime().let {
-        Timestamp.JsonMapper(
+        Timestamp(
             seconds = floor(it / 1000.0).toLong(),
             nanos = (it % 1000 * 1_000_000).toInt()
         )

@@ -168,253 +168,14 @@ data class TestAllTypesProto2(
     override operator fun plus(other: TestAllTypesProto2?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<TestAllTypesProto2> {
         val defaultInstance by lazy { TestAllTypesProto2() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2 { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("optional_int32")
-        val optionalInt32: Int? = null,
-        @SerialName("optional_int64")
-        val optionalInt64: Long? = null,
-        @SerialName("optional_uint32")
-        val optionalUint32: Int? = null,
-        @SerialName("optional_uint64")
-        val optionalUint64: Long? = null,
-        @SerialName("optional_sint32")
-        val optionalSint32: Int? = null,
-        @SerialName("optional_sint64")
-        val optionalSint64: Long? = null,
-        @SerialName("optional_fixed32")
-        val optionalFixed32: Int? = null,
-        @SerialName("optional_fixed64")
-        val optionalFixed64: Long? = null,
-        @SerialName("optional_sfixed32")
-        val optionalSfixed32: Int? = null,
-        @SerialName("optional_sfixed64")
-        val optionalSfixed64: Long? = null,
-        @SerialName("optional_float")
-        val optionalFloat: Float? = null,
-        @SerialName("optional_double")
-        val optionalDouble: Double? = null,
-        @SerialName("optional_bool")
-        val optionalBool: Boolean? = null,
-        @SerialName("optional_string")
-        val optionalString: String? = null,
-        @SerialName("optional_bytes")
-        val optionalBytes: pbandk.ByteArr? = null,
-        @SerialName("optional_nested_message")
-        val optionalNestedMessage: pbandk.conformance.pb.TestAllTypesProto2.NestedMessage.JsonMapper? = null,
-        @SerialName("optional_foreign_message")
-        val optionalForeignMessage: pbandk.conformance.pb.ForeignMessageProto2.JsonMapper? = null,
-        @SerialName("optional_nested_enum")
-        val optionalNestedEnum: String? = null,
-        @SerialName("optional_foreign_enum")
-        val optionalForeignEnum: String? = null,
-        @SerialName("optional_string_piece")
-        val optionalStringPiece: String? = null,
-        @SerialName("optional_cord")
-        val optionalCord: String? = null,
-        @SerialName("recursive_message")
-        val recursiveMessage: pbandk.conformance.pb.TestAllTypesProto2.JsonMapper? = null,
-        @SerialName("repeated_int32")
-        val repeatedInt32: List<Int> = emptyList(),
-        @SerialName("repeated_int64")
-        val repeatedInt64: List<Long> = emptyList(),
-        @SerialName("repeated_uint32")
-        val repeatedUint32: List<Int> = emptyList(),
-        @SerialName("repeated_uint64")
-        val repeatedUint64: List<Long> = emptyList(),
-        @SerialName("repeated_sint32")
-        val repeatedSint32: List<Int> = emptyList(),
-        @SerialName("repeated_sint64")
-        val repeatedSint64: List<Long> = emptyList(),
-        @SerialName("repeated_fixed32")
-        val repeatedFixed32: List<Int> = emptyList(),
-        @SerialName("repeated_fixed64")
-        val repeatedFixed64: List<Long> = emptyList(),
-        @SerialName("repeated_sfixed32")
-        val repeatedSfixed32: List<Int> = emptyList(),
-        @SerialName("repeated_sfixed64")
-        val repeatedSfixed64: List<Long> = emptyList(),
-        @SerialName("repeated_float")
-        val repeatedFloat: List<Float> = emptyList(),
-        @SerialName("repeated_double")
-        val repeatedDouble: List<Double> = emptyList(),
-        @SerialName("repeated_bool")
-        val repeatedBool: List<Boolean> = emptyList(),
-        @SerialName("repeated_string")
-        val repeatedString: List<String> = emptyList(),
-        @SerialName("repeated_bytes")
-        val repeatedBytes: List<pbandk.ByteArr> = emptyList(),
-        @SerialName("repeated_nested_message")
-        val repeatedNestedMessage: List<pbandk.conformance.pb.TestAllTypesProto2.NestedMessage.JsonMapper> = emptyList(),
-        @SerialName("repeated_foreign_message")
-        val repeatedForeignMessage: List<pbandk.conformance.pb.ForeignMessageProto2.JsonMapper> = emptyList(),
-        @SerialName("repeated_nested_enum")
-        val repeatedNestedEnum: List<String> = emptyList(),
-        @SerialName("repeated_foreign_enum")
-        val repeatedForeignEnum: List<String> = emptyList(),
-        @SerialName("repeated_string_piece")
-        val repeatedStringPiece: List<String> = emptyList(),
-        @SerialName("repeated_cord")
-        val repeatedCord: List<String> = emptyList(),
-        @SerialName("map_int32_int32")
-        val mapInt32Int32: Map<Int?, Int?> = emptyMap(),
-        @SerialName("map_int64_int64")
-        val mapInt64Int64: Map<Long?, Long?> = emptyMap(),
-        @SerialName("map_uint32_uint32")
-        val mapUint32Uint32: Map<Int?, Int?> = emptyMap(),
-        @SerialName("map_uint64_uint64")
-        val mapUint64Uint64: Map<Long?, Long?> = emptyMap(),
-        @SerialName("map_sint32_sint32")
-        val mapSint32Sint32: Map<Int?, Int?> = emptyMap(),
-        @SerialName("map_sint64_sint64")
-        val mapSint64Sint64: Map<Long?, Long?> = emptyMap(),
-        @SerialName("map_fixed32_fixed32")
-        val mapFixed32Fixed32: Map<Int?, Int?> = emptyMap(),
-        @SerialName("map_fixed64_fixed64")
-        val mapFixed64Fixed64: Map<Long?, Long?> = emptyMap(),
-        @SerialName("map_sfixed32_sfixed32")
-        val mapSfixed32Sfixed32: Map<Int?, Int?> = emptyMap(),
-        @SerialName("map_sfixed64_sfixed64")
-        val mapSfixed64Sfixed64: Map<Long?, Long?> = emptyMap(),
-        @SerialName("map_int32_float")
-        val mapInt32Float: Map<Int?, Float?> = emptyMap(),
-        @SerialName("map_int32_double")
-        val mapInt32Double: Map<Int?, Double?> = emptyMap(),
-        @SerialName("map_bool_bool")
-        val mapBoolBool: Map<Boolean?, Boolean?> = emptyMap(),
-        @SerialName("map_string_string")
-        val mapStringString: Map<String?, String?> = emptyMap(),
-        @SerialName("map_string_bytes")
-        val mapStringBytes: Map<String?, pbandk.ByteArr?> = emptyMap(),
-        @SerialName("map_string_nested_message")
-        val mapStringNestedMessage: Map<String?, pbandk.conformance.pb.TestAllTypesProto2.NestedMessage.JsonMapper?> = emptyMap(),
-        @SerialName("map_string_foreign_message")
-        val mapStringForeignMessage: Map<String?, pbandk.conformance.pb.ForeignMessageProto2.JsonMapper?> = emptyMap(),
-        @SerialName("map_string_nested_enum")
-        val mapStringNestedEnum: Map<String?, String?> = emptyMap(),
-        @SerialName("map_string_foreign_enum")
-        val mapStringForeignEnum: Map<String?, String?> = emptyMap(),
-        @SerialName("packed_int32")
-        val packedInt32: List<Int> = emptyList(),
-        @SerialName("packed_int64")
-        val packedInt64: List<Long> = emptyList(),
-        @SerialName("packed_uint32")
-        val packedUint32: List<Int> = emptyList(),
-        @SerialName("packed_uint64")
-        val packedUint64: List<Long> = emptyList(),
-        @SerialName("packed_sint32")
-        val packedSint32: List<Int> = emptyList(),
-        @SerialName("packed_sint64")
-        val packedSint64: List<Long> = emptyList(),
-        @SerialName("packed_fixed32")
-        val packedFixed32: List<Int> = emptyList(),
-        @SerialName("packed_fixed64")
-        val packedFixed64: List<Long> = emptyList(),
-        @SerialName("packed_sfixed32")
-        val packedSfixed32: List<Int> = emptyList(),
-        @SerialName("packed_sfixed64")
-        val packedSfixed64: List<Long> = emptyList(),
-        @SerialName("packed_float")
-        val packedFloat: List<Float> = emptyList(),
-        @SerialName("packed_double")
-        val packedDouble: List<Double> = emptyList(),
-        @SerialName("packed_bool")
-        val packedBool: List<Boolean> = emptyList(),
-        @SerialName("packed_nested_enum")
-        val packedNestedEnum: List<String> = emptyList(),
-        @SerialName("unpacked_int32")
-        val unpackedInt32: List<Int> = emptyList(),
-        @SerialName("unpacked_int64")
-        val unpackedInt64: List<Long> = emptyList(),
-        @SerialName("unpacked_uint32")
-        val unpackedUint32: List<Int> = emptyList(),
-        @SerialName("unpacked_uint64")
-        val unpackedUint64: List<Long> = emptyList(),
-        @SerialName("unpacked_sint32")
-        val unpackedSint32: List<Int> = emptyList(),
-        @SerialName("unpacked_sint64")
-        val unpackedSint64: List<Long> = emptyList(),
-        @SerialName("unpacked_fixed32")
-        val unpackedFixed32: List<Int> = emptyList(),
-        @SerialName("unpacked_fixed64")
-        val unpackedFixed64: List<Long> = emptyList(),
-        @SerialName("unpacked_sfixed32")
-        val unpackedSfixed32: List<Int> = emptyList(),
-        @SerialName("unpacked_sfixed64")
-        val unpackedSfixed64: List<Long> = emptyList(),
-        @SerialName("unpacked_float")
-        val unpackedFloat: List<Float> = emptyList(),
-        @SerialName("unpacked_double")
-        val unpackedDouble: List<Double> = emptyList(),
-        @SerialName("unpacked_bool")
-        val unpackedBool: List<Boolean> = emptyList(),
-        @SerialName("unpacked_nested_enum")
-        val unpackedNestedEnum: List<String> = emptyList(),
-        @SerialName("oneof_uint32")
-        val oneofUint32: Int? = null,
-        @SerialName("oneof_nested_message")
-        val oneofNestedMessage: pbandk.conformance.pb.TestAllTypesProto2.NestedMessage.JsonMapper? = null,
-        @SerialName("oneof_string")
-        val oneofString: String? = null,
-        @SerialName("oneof_bytes")
-        val oneofBytes: pbandk.ByteArr? = null,
-        @SerialName("oneof_bool")
-        val oneofBool: Boolean? = null,
-        @SerialName("oneof_uint64")
-        val oneofUint64: Long? = null,
-        @SerialName("oneof_float")
-        val oneofFloat: Float? = null,
-        @SerialName("oneof_double")
-        val oneofDouble: Double? = null,
-        @SerialName("oneof_enum")
-        val oneofEnum: String? = null,
-        @SerialName("fieldname1")
-        val fieldname1: Int? = null,
-        @SerialName("field_name2")
-        val fieldName2: Int? = null,
-        @SerialName("_field_name3")
-        val fieldName3: Int? = null,
-        @SerialName("field__name4_")
-        val field_name4: Int? = null,
-        @SerialName("field0name5")
-        val field0name5: Int? = null,
-        @SerialName("field_0_name6")
-        val field0Name6: Int? = null,
-        @SerialName("fieldName7")
-        val fieldName7: Int? = null,
-        @SerialName("FieldName8")
-        val fieldName8: Int? = null,
-        @SerialName("field_Name9")
-        val fieldName9: Int? = null,
-        @SerialName("Field_Name10")
-        val fieldName10: Int? = null,
-        @SerialName("FIELD_NAME11")
-        val fIELDNAME11: Int? = null,
-        @SerialName("FIELD_name12")
-        val fIELDName12: Int? = null,
-        @SerialName("__field_name13")
-        val _fieldName13: Int? = null,
-        @SerialName("__Field_name14")
-        val _FieldName14: Int? = null,
-        @SerialName("field__name15")
-        val field_name15: Int? = null,
-        @SerialName("field__Name16")
-        val field_Name16: Int? = null,
-        @SerialName("field_name17__")
-        val fieldName17_: Int? = null,
-        @SerialName("Field_name18__")
-        val fieldName18_: Int? = null
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 
     sealed class NestedEnum(override val value: Int, override val name: String? = null) : pbandk.Message.Enum {
         override fun equals(other: kotlin.Any?) = other is TestAllTypesProto2.NestedEnum && other.value == value
@@ -442,23 +203,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.NestedMessage?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.NestedMessage> {
             val defaultInstance by lazy { TestAllTypesProto2.NestedMessage() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.NestedMessage.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.NestedMessage.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.NestedMessage { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("a")
-            val a: Int? = null,
-            @SerialName("corecursive")
-            val corecursive: pbandk.conformance.pb.TestAllTypesProto2.JsonMapper? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapInt32Int32Entry(
@@ -469,23 +221,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapInt32Int32Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapInt32Int32Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapInt32Int32Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapInt32Int32Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapInt32Int32Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapInt32Int32Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Int? = null,
-            @SerialName("value")
-            val value: Int? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapInt64Int64Entry(
@@ -496,23 +239,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapInt64Int64Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapInt64Int64Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapInt64Int64Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapInt64Int64Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapInt64Int64Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapInt64Int64Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Long? = null,
-            @SerialName("value")
-            val value: Long? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapUint32Uint32Entry(
@@ -523,23 +257,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapUint32Uint32Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapUint32Uint32Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapUint32Uint32Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapUint32Uint32Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapUint32Uint32Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapUint32Uint32Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Int? = null,
-            @SerialName("value")
-            val value: Int? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapUint64Uint64Entry(
@@ -550,23 +275,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapUint64Uint64Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapUint64Uint64Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapUint64Uint64Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapUint64Uint64Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapUint64Uint64Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapUint64Uint64Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Long? = null,
-            @SerialName("value")
-            val value: Long? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapSint32Sint32Entry(
@@ -577,23 +293,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapSint32Sint32Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapSint32Sint32Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapSint32Sint32Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapSint32Sint32Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapSint32Sint32Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapSint32Sint32Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Int? = null,
-            @SerialName("value")
-            val value: Int? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapSint64Sint64Entry(
@@ -604,23 +311,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapSint64Sint64Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapSint64Sint64Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapSint64Sint64Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapSint64Sint64Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapSint64Sint64Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapSint64Sint64Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Long? = null,
-            @SerialName("value")
-            val value: Long? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapFixed32Fixed32Entry(
@@ -631,23 +329,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapFixed32Fixed32Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapFixed32Fixed32Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapFixed32Fixed32Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapFixed32Fixed32Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapFixed32Fixed32Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapFixed32Fixed32Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Int? = null,
-            @SerialName("value")
-            val value: Int? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapFixed64Fixed64Entry(
@@ -658,23 +347,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapFixed64Fixed64Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapFixed64Fixed64Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapFixed64Fixed64Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapFixed64Fixed64Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapFixed64Fixed64Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapFixed64Fixed64Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Long? = null,
-            @SerialName("value")
-            val value: Long? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapSfixed32Sfixed32Entry(
@@ -685,23 +365,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapSfixed32Sfixed32Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapSfixed32Sfixed32Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapSfixed32Sfixed32Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapSfixed32Sfixed32Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapSfixed32Sfixed32Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapSfixed32Sfixed32Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Int? = null,
-            @SerialName("value")
-            val value: Int? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapSfixed64Sfixed64Entry(
@@ -712,23 +383,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapSfixed64Sfixed64Entry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapSfixed64Sfixed64Entry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapSfixed64Sfixed64Entry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapSfixed64Sfixed64Entry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapSfixed64Sfixed64Entry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapSfixed64Sfixed64Entry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Long? = null,
-            @SerialName("value")
-            val value: Long? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapInt32FloatEntry(
@@ -739,23 +401,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapInt32FloatEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapInt32FloatEntry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapInt32FloatEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapInt32FloatEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapInt32FloatEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapInt32FloatEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Int? = null,
-            @SerialName("value")
-            val value: Float? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapInt32DoubleEntry(
@@ -766,23 +419,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapInt32DoubleEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapInt32DoubleEntry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapInt32DoubleEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapInt32DoubleEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapInt32DoubleEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapInt32DoubleEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Int? = null,
-            @SerialName("value")
-            val value: Double? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapBoolBoolEntry(
@@ -793,23 +437,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapBoolBoolEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapBoolBoolEntry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapBoolBoolEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapBoolBoolEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapBoolBoolEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapBoolBoolEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: Boolean? = null,
-            @SerialName("value")
-            val value: Boolean? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapStringStringEntry(
@@ -820,23 +455,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapStringStringEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapStringStringEntry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapStringStringEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapStringStringEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapStringStringEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapStringStringEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: String? = null,
-            @SerialName("value")
-            val value: String? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapStringBytesEntry(
@@ -847,23 +473,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapStringBytesEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapStringBytesEntry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapStringBytesEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapStringBytesEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapStringBytesEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapStringBytesEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: String? = null,
-            @SerialName("value")
-            val value: pbandk.ByteArr? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapStringNestedMessageEntry(
@@ -874,23 +491,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapStringNestedMessageEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapStringNestedMessageEntry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapStringNestedMessageEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapStringNestedMessageEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapStringNestedMessageEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapStringNestedMessageEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: String? = null,
-            @SerialName("value")
-            val value: pbandk.conformance.pb.TestAllTypesProto2.NestedMessage.JsonMapper? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapStringForeignMessageEntry(
@@ -901,23 +509,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapStringForeignMessageEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapStringForeignMessageEntry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapStringForeignMessageEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapStringForeignMessageEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapStringForeignMessageEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapStringForeignMessageEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: String? = null,
-            @SerialName("value")
-            val value: pbandk.conformance.pb.ForeignMessageProto2.JsonMapper? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapStringNestedEnumEntry(
@@ -928,23 +527,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapStringNestedEnumEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapStringNestedEnumEntry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapStringNestedEnumEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapStringNestedEnumEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapStringNestedEnumEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapStringNestedEnumEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: String? = null,
-            @SerialName("value")
-            val value: String? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MapStringForeignEnumEntry(
@@ -955,23 +545,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MapStringForeignEnumEntry?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MapStringForeignEnumEntry> {
             val defaultInstance by lazy { TestAllTypesProto2.MapStringForeignEnumEntry() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MapStringForeignEnumEntry.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MapStringForeignEnumEntry.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MapStringForeignEnumEntry { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("key")
-            val key: String? = null,
-            @SerialName("value")
-            val value: String? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class Data(
@@ -982,23 +563,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.Data?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.Data> {
             val defaultInstance by lazy { TestAllTypesProto2.Data() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.Data.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.Data.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.Data { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("group_int32")
-            val groupInt32: Int? = null,
-            @SerialName("group_uint32")
-            val groupUint32: Int? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MessageSetCorrect(
@@ -1007,18 +579,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MessageSetCorrect?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MessageSetCorrect> {
             val defaultInstance by lazy { TestAllTypesProto2.MessageSetCorrect() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MessageSetCorrect.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MessageSetCorrect.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MessageSetCorrect { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        class JsonMapper {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MessageSetCorrectExtension1(
@@ -1028,21 +596,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MessageSetCorrectExtension1?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MessageSetCorrectExtension1> {
             val defaultInstance by lazy { TestAllTypesProto2.MessageSetCorrectExtension1() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MessageSetCorrectExtension1.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MessageSetCorrectExtension1.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MessageSetCorrectExtension1 { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("str")
-            val str: String? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 
     data class MessageSetCorrectExtension2(
@@ -1052,21 +613,14 @@ data class TestAllTypesProto2(
         override operator fun plus(other: TestAllTypesProto2.MessageSetCorrectExtension2?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<TestAllTypesProto2.MessageSetCorrectExtension2> {
             val defaultInstance by lazy { TestAllTypesProto2.MessageSetCorrectExtension2() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = TestAllTypesProto2.MessageSetCorrectExtension2.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = TestAllTypesProto2.MessageSetCorrectExtension2.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): TestAllTypesProto2.MessageSetCorrectExtension2 { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("i")
-            val i: Int? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 }
 
@@ -1077,21 +631,14 @@ data class ForeignMessageProto2(
     override operator fun plus(other: ForeignMessageProto2?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<ForeignMessageProto2> {
         val defaultInstance by lazy { ForeignMessageProto2() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = ForeignMessageProto2.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = ForeignMessageProto2.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): ForeignMessageProto2 { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("c")
-        val c: Int? = null
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 }
 
 data class UnknownToTestAllTypes(
@@ -1105,29 +652,14 @@ data class UnknownToTestAllTypes(
     override operator fun plus(other: UnknownToTestAllTypes?) = protoMergeImpl(other)
     override val protoSize by lazy { protoSizeImpl() }
     override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-    override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-    fun toJsonMapper() = toJsonMapperImpl()
+    override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
     companion object : pbandk.Message.Companion<UnknownToTestAllTypes> {
         val defaultInstance by lazy { UnknownToTestAllTypes() }
         override fun protoUnmarshal(u: pbandk.Unmarshaller) = UnknownToTestAllTypes.protoUnmarshalImpl(u)
-        override fun jsonUnmarshal(json: Json, data: String) = UnknownToTestAllTypes.jsonUnmarshalImpl(json, data)
+        override fun jsonUnmarshal(json: Json, data: String): UnknownToTestAllTypes { throw UnsupportedOperationException("Json support is disabled")
+ }
     }
 
-    @Serializable
-    data class JsonMapper (
-        @SerialName("optional_int32")
-        val optionalInt32: Int? = null,
-        @SerialName("optional_string")
-        val optionalString: String? = null,
-        @SerialName("nested_message")
-        val nestedMessage: pbandk.conformance.pb.ForeignMessageProto2.JsonMapper? = null,
-        @SerialName("optional_bool")
-        val optionalBool: Boolean? = null,
-        @SerialName("repeated_int32")
-        val repeatedInt32: List<Int> = emptyList()
-    ) {
-        fun toMessage() = toMessageImpl()
-    }
 
     data class OptionalGroup(
         val a: Int? = null,
@@ -1136,21 +668,14 @@ data class UnknownToTestAllTypes(
         override operator fun plus(other: UnknownToTestAllTypes.OptionalGroup?) = protoMergeImpl(other)
         override val protoSize by lazy { protoSizeImpl() }
         override fun protoMarshal(m: pbandk.Marshaller) = protoMarshalImpl(m)
-        override fun jsonMarshal(json: Json) = jsonMarshalImpl(json)
-        fun toJsonMapper() = toJsonMapperImpl()
+        override fun jsonMarshal(json: Json): String { throw UnsupportedOperationException("Json support is disabled") }
         companion object : pbandk.Message.Companion<UnknownToTestAllTypes.OptionalGroup> {
             val defaultInstance by lazy { UnknownToTestAllTypes.OptionalGroup() }
             override fun protoUnmarshal(u: pbandk.Unmarshaller) = UnknownToTestAllTypes.OptionalGroup.protoUnmarshalImpl(u)
-            override fun jsonUnmarshal(json: Json, data: String) = UnknownToTestAllTypes.OptionalGroup.jsonUnmarshalImpl(json, data)
+            override fun jsonUnmarshal(json: Json, data: String): UnknownToTestAllTypes.OptionalGroup { throw UnsupportedOperationException("Json support is disabled")
+ }
         }
 
-        @Serializable
-        data class JsonMapper (
-            @SerialName("a")
-            val a: Int? = null
-        ) {
-            fun toMessage() = toMessageImpl()
-        }
     }
 }
 
@@ -1780,257 +1305,6 @@ private fun TestAllTypesProto2.Companion.protoUnmarshalImpl(protoUnmarshal: pban
     }
 }
 
-private fun TestAllTypesProto2.toJsonMapperImpl(): TestAllTypesProto2.JsonMapper =
-    TestAllTypesProto2.JsonMapper(
-        optionalInt32,
-        optionalInt64,
-        optionalUint32,
-        optionalUint64,
-        optionalSint32,
-        optionalSint64,
-        optionalFixed32,
-        optionalFixed64,
-        optionalSfixed32,
-        optionalSfixed64,
-        optionalFloat,
-        optionalDouble,
-        optionalBool,
-        optionalString,
-        optionalBytes,
-        optionalNestedMessage?.toJsonMapper(),
-        optionalForeignMessage?.toJsonMapper(),
-        optionalNestedEnum?.name,
-        optionalForeignEnum?.name,
-        optionalStringPiece,
-        optionalCord,
-        recursiveMessage?.toJsonMapper(),
-        repeatedInt32,
-        repeatedInt64,
-        repeatedUint32,
-        repeatedUint64,
-        repeatedSint32,
-        repeatedSint64,
-        repeatedFixed32,
-        repeatedFixed64,
-        repeatedSfixed32,
-        repeatedSfixed64,
-        repeatedFloat,
-        repeatedDouble,
-        repeatedBool,
-        repeatedString,
-        repeatedBytes,
-        repeatedNestedMessage.map { it.toJsonMapper() },
-        repeatedForeignMessage.map { it.toJsonMapper() },
-        repeatedNestedEnum.mapNotNull { it.name },
-        repeatedForeignEnum.mapNotNull { it.name },
-        repeatedStringPiece,
-        repeatedCord,
-        mapInt32Int32,
-        mapInt64Int64,
-        mapUint32Uint32,
-        mapUint64Uint64,
-        mapSint32Sint32,
-        mapSint64Sint64,
-        mapFixed32Fixed32,
-        mapFixed64Fixed64,
-        mapSfixed32Sfixed32,
-        mapSfixed64Sfixed64,
-        mapInt32Float,
-        mapInt32Double,
-        mapBoolBool,
-        mapStringString,
-        mapStringBytes,
-        mapStringNestedMessage.mapValues { it.value?.toJsonMapper() },
-        mapStringForeignMessage.mapValues { it.value?.toJsonMapper() },
-        mapStringNestedEnum.mapValues { it.value?.name },
-        mapStringForeignEnum.mapValues { it.value?.name },
-        packedInt32,
-        packedInt64,
-        packedUint32,
-        packedUint64,
-        packedSint32,
-        packedSint64,
-        packedFixed32,
-        packedFixed64,
-        packedSfixed32,
-        packedSfixed64,
-        packedFloat,
-        packedDouble,
-        packedBool,
-        packedNestedEnum.mapNotNull { it.name },
-        unpackedInt32,
-        unpackedInt64,
-        unpackedUint32,
-        unpackedUint64,
-        unpackedSint32,
-        unpackedSint64,
-        unpackedFixed32,
-        unpackedFixed64,
-        unpackedSfixed32,
-        unpackedSfixed64,
-        unpackedFloat,
-        unpackedDouble,
-        unpackedBool,
-        unpackedNestedEnum.mapNotNull { it.name },
-        oneofUint32,
-        oneofNestedMessage?.toJsonMapper(),
-        oneofString.takeIf { it != "" },
-        oneofBytes,
-        oneofBool,
-        oneofUint64,
-        oneofFloat,
-        oneofDouble,
-        oneofEnum?.name,
-        fieldname1,
-        fieldName2,
-        fieldName3,
-        field_name4,
-        field0name5,
-        field0Name6,
-        fieldName7,
-        fieldName8,
-        fieldName9,
-        fieldName10,
-        fIELDNAME11,
-        fIELDName12,
-        _fieldName13,
-        _FieldName14,
-        field_name15,
-        field_Name16,
-        fieldName17_,
-        fieldName18_
-    )
-
-private fun TestAllTypesProto2.JsonMapper.toMessageImpl(): TestAllTypesProto2 =
-    TestAllTypesProto2(
-        optionalInt32 = optionalInt32 ?: null,
-        optionalInt64 = optionalInt64 ?: null,
-        optionalUint32 = optionalUint32 ?: null,
-        optionalUint64 = optionalUint64 ?: null,
-        optionalSint32 = optionalSint32 ?: null,
-        optionalSint64 = optionalSint64 ?: null,
-        optionalFixed32 = optionalFixed32 ?: null,
-        optionalFixed64 = optionalFixed64 ?: null,
-        optionalSfixed32 = optionalSfixed32 ?: null,
-        optionalSfixed64 = optionalSfixed64 ?: null,
-        optionalFloat = optionalFloat ?: null,
-        optionalDouble = optionalDouble ?: null,
-        optionalBool = optionalBool ?: null,
-        optionalString = optionalString ?: null,
-        optionalBytes = optionalBytes ?: null,
-        optionalNestedMessage = optionalNestedMessage?.toMessage(),
-        optionalForeignMessage = optionalForeignMessage?.toMessage(),
-        optionalNestedEnum = optionalNestedEnum?.let { pbandk.conformance.pb.TestAllTypesProto2.NestedEnum.fromName(it) } ?: null,
-        optionalForeignEnum = optionalForeignEnum?.let { pbandk.conformance.pb.ForeignEnumProto2.fromName(it) } ?: null,
-        optionalStringPiece = optionalStringPiece ?: null,
-        optionalCord = optionalCord ?: null,
-        recursiveMessage = recursiveMessage?.toMessage(),
-        repeatedInt32 = repeatedInt32 ?: emptyList(),
-        repeatedInt64 = repeatedInt64 ?: emptyList(),
-        repeatedUint32 = repeatedUint32 ?: emptyList(),
-        repeatedUint64 = repeatedUint64 ?: emptyList(),
-        repeatedSint32 = repeatedSint32 ?: emptyList(),
-        repeatedSint64 = repeatedSint64 ?: emptyList(),
-        repeatedFixed32 = repeatedFixed32 ?: emptyList(),
-        repeatedFixed64 = repeatedFixed64 ?: emptyList(),
-        repeatedSfixed32 = repeatedSfixed32 ?: emptyList(),
-        repeatedSfixed64 = repeatedSfixed64 ?: emptyList(),
-        repeatedFloat = repeatedFloat ?: emptyList(),
-        repeatedDouble = repeatedDouble ?: emptyList(),
-        repeatedBool = repeatedBool ?: emptyList(),
-        repeatedString = repeatedString ?: emptyList(),
-        repeatedBytes = repeatedBytes ?: emptyList(),
-        repeatedNestedMessage = repeatedNestedMessage.map { it.toMessage() },
-        repeatedForeignMessage = repeatedForeignMessage.map { it.toMessage() },
-        repeatedNestedEnum = repeatedNestedEnum.map { pbandk.conformance.pb.TestAllTypesProto2.NestedEnum.fromName(it) },
-        repeatedForeignEnum = repeatedForeignEnum.map { pbandk.conformance.pb.ForeignEnumProto2.fromName(it) },
-        repeatedStringPiece = repeatedStringPiece ?: emptyList(),
-        repeatedCord = repeatedCord ?: emptyList(),
-        packedInt32 = packedInt32 ?: emptyList(),
-        packedInt64 = packedInt64 ?: emptyList(),
-        packedUint32 = packedUint32 ?: emptyList(),
-        packedUint64 = packedUint64 ?: emptyList(),
-        packedSint32 = packedSint32 ?: emptyList(),
-        packedSint64 = packedSint64 ?: emptyList(),
-        packedFixed32 = packedFixed32 ?: emptyList(),
-        packedFixed64 = packedFixed64 ?: emptyList(),
-        packedSfixed32 = packedSfixed32 ?: emptyList(),
-        packedSfixed64 = packedSfixed64 ?: emptyList(),
-        packedFloat = packedFloat ?: emptyList(),
-        packedDouble = packedDouble ?: emptyList(),
-        packedBool = packedBool ?: emptyList(),
-        packedNestedEnum = packedNestedEnum.map { pbandk.conformance.pb.TestAllTypesProto2.NestedEnum.fromName(it) },
-        unpackedInt32 = unpackedInt32 ?: emptyList(),
-        unpackedInt64 = unpackedInt64 ?: emptyList(),
-        unpackedUint32 = unpackedUint32 ?: emptyList(),
-        unpackedUint64 = unpackedUint64 ?: emptyList(),
-        unpackedSint32 = unpackedSint32 ?: emptyList(),
-        unpackedSint64 = unpackedSint64 ?: emptyList(),
-        unpackedFixed32 = unpackedFixed32 ?: emptyList(),
-        unpackedFixed64 = unpackedFixed64 ?: emptyList(),
-        unpackedSfixed32 = unpackedSfixed32 ?: emptyList(),
-        unpackedSfixed64 = unpackedSfixed64 ?: emptyList(),
-        unpackedFloat = unpackedFloat ?: emptyList(),
-        unpackedDouble = unpackedDouble ?: emptyList(),
-        unpackedBool = unpackedBool ?: emptyList(),
-        unpackedNestedEnum = unpackedNestedEnum.map { pbandk.conformance.pb.TestAllTypesProto2.NestedEnum.fromName(it) },
-        mapInt32Int32 = mapInt32Int32.mapValues { it.value ?: null },
-        mapInt64Int64 = mapInt64Int64.mapValues { it.value ?: null },
-        mapUint32Uint32 = mapUint32Uint32.mapValues { it.value ?: null },
-        mapUint64Uint64 = mapUint64Uint64.mapValues { it.value ?: null },
-        mapSint32Sint32 = mapSint32Sint32.mapValues { it.value ?: null },
-        mapSint64Sint64 = mapSint64Sint64.mapValues { it.value ?: null },
-        mapFixed32Fixed32 = mapFixed32Fixed32.mapValues { it.value ?: null },
-        mapFixed64Fixed64 = mapFixed64Fixed64.mapValues { it.value ?: null },
-        mapSfixed32Sfixed32 = mapSfixed32Sfixed32.mapValues { it.value ?: null },
-        mapSfixed64Sfixed64 = mapSfixed64Sfixed64.mapValues { it.value ?: null },
-        mapInt32Float = mapInt32Float.mapValues { it.value ?: null },
-        mapInt32Double = mapInt32Double.mapValues { it.value ?: null },
-        mapBoolBool = mapBoolBool.mapValues { it.value ?: null },
-        mapStringString = mapStringString.mapValues { it.value ?: null },
-        mapStringBytes = mapStringBytes.mapValues { it.value ?: null },
-        mapStringNestedMessage = mapStringNestedMessage.mapValues { it.value?.toMessage() },
-        mapStringForeignMessage = mapStringForeignMessage.mapValues { it.value?.toMessage() },
-        mapStringNestedEnum = mapStringNestedEnum.mapValues { pbandk.conformance.pb.TestAllTypesProto2.NestedEnum?.fromName(it.value!!) },
-        mapStringForeignEnum = mapStringForeignEnum.mapValues { pbandk.conformance.pb.ForeignEnumProto2?.fromName(it.value!!) },
-        fieldname1 = fieldname1 ?: null,
-        fieldName2 = fieldName2 ?: null,
-        fieldName3 = fieldName3 ?: null,
-        field_name4 = field_name4 ?: null,
-        field0name5 = field0name5 ?: null,
-        field0Name6 = field0Name6 ?: null,
-        fieldName7 = fieldName7 ?: null,
-        fieldName8 = fieldName8 ?: null,
-        fieldName9 = fieldName9 ?: null,
-        fieldName10 = fieldName10 ?: null,
-        fIELDNAME11 = fIELDNAME11 ?: null,
-        fIELDName12 = fIELDName12 ?: null,
-        _fieldName13 = _fieldName13 ?: null,
-        _FieldName14 = _FieldName14 ?: null,
-        field_name15 = field_name15 ?: null,
-        field_Name16 = field_Name16 ?: null,
-        fieldName17_ = fieldName17_ ?: null,
-        fieldName18_ = fieldName18_ ?: null,
-        oneofField = 
-            oneofUint32?.let { value -> TestAllTypesProto2.OneofField.OneofUint32(value) }
-             ?: oneofNestedMessage?.let { value -> TestAllTypesProto2.OneofField.OneofNestedMessage(value.toMessage()) }
-             ?: oneofString?.let { value -> TestAllTypesProto2.OneofField.OneofString(value) }
-             ?: oneofBytes?.let { value -> TestAllTypesProto2.OneofField.OneofBytes(value) }
-             ?: oneofBool?.let { value -> TestAllTypesProto2.OneofField.OneofBool(value) }
-             ?: oneofUint64?.let { value -> TestAllTypesProto2.OneofField.OneofUint64(value) }
-             ?: oneofFloat?.let { value -> TestAllTypesProto2.OneofField.OneofFloat(value) }
-             ?: oneofDouble?.let { value -> TestAllTypesProto2.OneofField.OneofDouble(value) }
-             ?: oneofEnum?.let { value -> TestAllTypesProto2.OneofField.OneofEnum(value.let { pbandk.conformance.pb.TestAllTypesProto2.NestedEnum.fromName(it) }) }
-    )
-
-private fun TestAllTypesProto2.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2 {
-    val mapper = json.parse(TestAllTypesProto2.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.NestedMessage?.orDefault() = this ?: TestAllTypesProto2.NestedMessage.defaultInstance
 
 private fun TestAllTypesProto2.NestedMessage.protoMergeImpl(plus: TestAllTypesProto2.NestedMessage?): TestAllTypesProto2.NestedMessage = plus?.copy(
@@ -2062,26 +1336,6 @@ private fun TestAllTypesProto2.NestedMessage.Companion.protoUnmarshalImpl(protoU
         18 -> corecursive = protoUnmarshal.readMessage(pbandk.conformance.pb.TestAllTypesProto2.Companion)
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.NestedMessage.toJsonMapperImpl(): TestAllTypesProto2.NestedMessage.JsonMapper =
-    TestAllTypesProto2.NestedMessage.JsonMapper(
-        a,
-        corecursive?.toJsonMapper()
-    )
-
-private fun TestAllTypesProto2.NestedMessage.JsonMapper.toMessageImpl(): TestAllTypesProto2.NestedMessage =
-    TestAllTypesProto2.NestedMessage(
-        a = a ?: null,
-        corecursive = corecursive?.toMessage()
-    )
-
-private fun TestAllTypesProto2.NestedMessage.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.NestedMessage.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.NestedMessage.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.NestedMessage {
-    val mapper = json.parse(TestAllTypesProto2.NestedMessage.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapInt32Int32Entry?.orDefault() = this ?: TestAllTypesProto2.MapInt32Int32Entry.defaultInstance
@@ -2117,26 +1371,6 @@ private fun TestAllTypesProto2.MapInt32Int32Entry.Companion.protoUnmarshalImpl(p
     }
 }
 
-private fun TestAllTypesProto2.MapInt32Int32Entry.toJsonMapperImpl(): TestAllTypesProto2.MapInt32Int32Entry.JsonMapper =
-    TestAllTypesProto2.MapInt32Int32Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapInt32Int32Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapInt32Int32Entry =
-    TestAllTypesProto2.MapInt32Int32Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapInt32Int32Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapInt32Int32Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapInt32Int32Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapInt32Int32Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapInt32Int32Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MapInt64Int64Entry?.orDefault() = this ?: TestAllTypesProto2.MapInt64Int64Entry.defaultInstance
 
 private fun TestAllTypesProto2.MapInt64Int64Entry.protoMergeImpl(plus: TestAllTypesProto2.MapInt64Int64Entry?): TestAllTypesProto2.MapInt64Int64Entry = plus?.copy(
@@ -2168,26 +1402,6 @@ private fun TestAllTypesProto2.MapInt64Int64Entry.Companion.protoUnmarshalImpl(p
         16 -> value = protoUnmarshal.readInt64()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MapInt64Int64Entry.toJsonMapperImpl(): TestAllTypesProto2.MapInt64Int64Entry.JsonMapper =
-    TestAllTypesProto2.MapInt64Int64Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapInt64Int64Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapInt64Int64Entry =
-    TestAllTypesProto2.MapInt64Int64Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapInt64Int64Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapInt64Int64Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapInt64Int64Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapInt64Int64Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapInt64Int64Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapUint32Uint32Entry?.orDefault() = this ?: TestAllTypesProto2.MapUint32Uint32Entry.defaultInstance
@@ -2223,26 +1437,6 @@ private fun TestAllTypesProto2.MapUint32Uint32Entry.Companion.protoUnmarshalImpl
     }
 }
 
-private fun TestAllTypesProto2.MapUint32Uint32Entry.toJsonMapperImpl(): TestAllTypesProto2.MapUint32Uint32Entry.JsonMapper =
-    TestAllTypesProto2.MapUint32Uint32Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapUint32Uint32Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapUint32Uint32Entry =
-    TestAllTypesProto2.MapUint32Uint32Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapUint32Uint32Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapUint32Uint32Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapUint32Uint32Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapUint32Uint32Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapUint32Uint32Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MapUint64Uint64Entry?.orDefault() = this ?: TestAllTypesProto2.MapUint64Uint64Entry.defaultInstance
 
 private fun TestAllTypesProto2.MapUint64Uint64Entry.protoMergeImpl(plus: TestAllTypesProto2.MapUint64Uint64Entry?): TestAllTypesProto2.MapUint64Uint64Entry = plus?.copy(
@@ -2274,26 +1468,6 @@ private fun TestAllTypesProto2.MapUint64Uint64Entry.Companion.protoUnmarshalImpl
         16 -> value = protoUnmarshal.readUInt64()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MapUint64Uint64Entry.toJsonMapperImpl(): TestAllTypesProto2.MapUint64Uint64Entry.JsonMapper =
-    TestAllTypesProto2.MapUint64Uint64Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapUint64Uint64Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapUint64Uint64Entry =
-    TestAllTypesProto2.MapUint64Uint64Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapUint64Uint64Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapUint64Uint64Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapUint64Uint64Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapUint64Uint64Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapUint64Uint64Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapSint32Sint32Entry?.orDefault() = this ?: TestAllTypesProto2.MapSint32Sint32Entry.defaultInstance
@@ -2329,26 +1503,6 @@ private fun TestAllTypesProto2.MapSint32Sint32Entry.Companion.protoUnmarshalImpl
     }
 }
 
-private fun TestAllTypesProto2.MapSint32Sint32Entry.toJsonMapperImpl(): TestAllTypesProto2.MapSint32Sint32Entry.JsonMapper =
-    TestAllTypesProto2.MapSint32Sint32Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapSint32Sint32Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapSint32Sint32Entry =
-    TestAllTypesProto2.MapSint32Sint32Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapSint32Sint32Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapSint32Sint32Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapSint32Sint32Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapSint32Sint32Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapSint32Sint32Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MapSint64Sint64Entry?.orDefault() = this ?: TestAllTypesProto2.MapSint64Sint64Entry.defaultInstance
 
 private fun TestAllTypesProto2.MapSint64Sint64Entry.protoMergeImpl(plus: TestAllTypesProto2.MapSint64Sint64Entry?): TestAllTypesProto2.MapSint64Sint64Entry = plus?.copy(
@@ -2380,26 +1534,6 @@ private fun TestAllTypesProto2.MapSint64Sint64Entry.Companion.protoUnmarshalImpl
         16 -> value = protoUnmarshal.readSInt64()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MapSint64Sint64Entry.toJsonMapperImpl(): TestAllTypesProto2.MapSint64Sint64Entry.JsonMapper =
-    TestAllTypesProto2.MapSint64Sint64Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapSint64Sint64Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapSint64Sint64Entry =
-    TestAllTypesProto2.MapSint64Sint64Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapSint64Sint64Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapSint64Sint64Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapSint64Sint64Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapSint64Sint64Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapSint64Sint64Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapFixed32Fixed32Entry?.orDefault() = this ?: TestAllTypesProto2.MapFixed32Fixed32Entry.defaultInstance
@@ -2435,26 +1569,6 @@ private fun TestAllTypesProto2.MapFixed32Fixed32Entry.Companion.protoUnmarshalIm
     }
 }
 
-private fun TestAllTypesProto2.MapFixed32Fixed32Entry.toJsonMapperImpl(): TestAllTypesProto2.MapFixed32Fixed32Entry.JsonMapper =
-    TestAllTypesProto2.MapFixed32Fixed32Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapFixed32Fixed32Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapFixed32Fixed32Entry =
-    TestAllTypesProto2.MapFixed32Fixed32Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapFixed32Fixed32Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapFixed32Fixed32Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapFixed32Fixed32Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapFixed32Fixed32Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapFixed32Fixed32Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MapFixed64Fixed64Entry?.orDefault() = this ?: TestAllTypesProto2.MapFixed64Fixed64Entry.defaultInstance
 
 private fun TestAllTypesProto2.MapFixed64Fixed64Entry.protoMergeImpl(plus: TestAllTypesProto2.MapFixed64Fixed64Entry?): TestAllTypesProto2.MapFixed64Fixed64Entry = plus?.copy(
@@ -2486,26 +1600,6 @@ private fun TestAllTypesProto2.MapFixed64Fixed64Entry.Companion.protoUnmarshalIm
         17 -> value = protoUnmarshal.readFixed64()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MapFixed64Fixed64Entry.toJsonMapperImpl(): TestAllTypesProto2.MapFixed64Fixed64Entry.JsonMapper =
-    TestAllTypesProto2.MapFixed64Fixed64Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapFixed64Fixed64Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapFixed64Fixed64Entry =
-    TestAllTypesProto2.MapFixed64Fixed64Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapFixed64Fixed64Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapFixed64Fixed64Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapFixed64Fixed64Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapFixed64Fixed64Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapFixed64Fixed64Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapSfixed32Sfixed32Entry?.orDefault() = this ?: TestAllTypesProto2.MapSfixed32Sfixed32Entry.defaultInstance
@@ -2541,26 +1635,6 @@ private fun TestAllTypesProto2.MapSfixed32Sfixed32Entry.Companion.protoUnmarshal
     }
 }
 
-private fun TestAllTypesProto2.MapSfixed32Sfixed32Entry.toJsonMapperImpl(): TestAllTypesProto2.MapSfixed32Sfixed32Entry.JsonMapper =
-    TestAllTypesProto2.MapSfixed32Sfixed32Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapSfixed32Sfixed32Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapSfixed32Sfixed32Entry =
-    TestAllTypesProto2.MapSfixed32Sfixed32Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapSfixed32Sfixed32Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapSfixed32Sfixed32Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapSfixed32Sfixed32Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapSfixed32Sfixed32Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapSfixed32Sfixed32Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MapSfixed64Sfixed64Entry?.orDefault() = this ?: TestAllTypesProto2.MapSfixed64Sfixed64Entry.defaultInstance
 
 private fun TestAllTypesProto2.MapSfixed64Sfixed64Entry.protoMergeImpl(plus: TestAllTypesProto2.MapSfixed64Sfixed64Entry?): TestAllTypesProto2.MapSfixed64Sfixed64Entry = plus?.copy(
@@ -2592,26 +1666,6 @@ private fun TestAllTypesProto2.MapSfixed64Sfixed64Entry.Companion.protoUnmarshal
         17 -> value = protoUnmarshal.readSFixed64()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MapSfixed64Sfixed64Entry.toJsonMapperImpl(): TestAllTypesProto2.MapSfixed64Sfixed64Entry.JsonMapper =
-    TestAllTypesProto2.MapSfixed64Sfixed64Entry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapSfixed64Sfixed64Entry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapSfixed64Sfixed64Entry =
-    TestAllTypesProto2.MapSfixed64Sfixed64Entry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapSfixed64Sfixed64Entry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapSfixed64Sfixed64Entry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapSfixed64Sfixed64Entry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapSfixed64Sfixed64Entry {
-    val mapper = json.parse(TestAllTypesProto2.MapSfixed64Sfixed64Entry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapInt32FloatEntry?.orDefault() = this ?: TestAllTypesProto2.MapInt32FloatEntry.defaultInstance
@@ -2647,26 +1701,6 @@ private fun TestAllTypesProto2.MapInt32FloatEntry.Companion.protoUnmarshalImpl(p
     }
 }
 
-private fun TestAllTypesProto2.MapInt32FloatEntry.toJsonMapperImpl(): TestAllTypesProto2.MapInt32FloatEntry.JsonMapper =
-    TestAllTypesProto2.MapInt32FloatEntry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapInt32FloatEntry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapInt32FloatEntry =
-    TestAllTypesProto2.MapInt32FloatEntry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapInt32FloatEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapInt32FloatEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapInt32FloatEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapInt32FloatEntry {
-    val mapper = json.parse(TestAllTypesProto2.MapInt32FloatEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MapInt32DoubleEntry?.orDefault() = this ?: TestAllTypesProto2.MapInt32DoubleEntry.defaultInstance
 
 private fun TestAllTypesProto2.MapInt32DoubleEntry.protoMergeImpl(plus: TestAllTypesProto2.MapInt32DoubleEntry?): TestAllTypesProto2.MapInt32DoubleEntry = plus?.copy(
@@ -2698,26 +1732,6 @@ private fun TestAllTypesProto2.MapInt32DoubleEntry.Companion.protoUnmarshalImpl(
         17 -> value = protoUnmarshal.readDouble()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MapInt32DoubleEntry.toJsonMapperImpl(): TestAllTypesProto2.MapInt32DoubleEntry.JsonMapper =
-    TestAllTypesProto2.MapInt32DoubleEntry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapInt32DoubleEntry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapInt32DoubleEntry =
-    TestAllTypesProto2.MapInt32DoubleEntry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapInt32DoubleEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapInt32DoubleEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapInt32DoubleEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapInt32DoubleEntry {
-    val mapper = json.parse(TestAllTypesProto2.MapInt32DoubleEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapBoolBoolEntry?.orDefault() = this ?: TestAllTypesProto2.MapBoolBoolEntry.defaultInstance
@@ -2753,26 +1767,6 @@ private fun TestAllTypesProto2.MapBoolBoolEntry.Companion.protoUnmarshalImpl(pro
     }
 }
 
-private fun TestAllTypesProto2.MapBoolBoolEntry.toJsonMapperImpl(): TestAllTypesProto2.MapBoolBoolEntry.JsonMapper =
-    TestAllTypesProto2.MapBoolBoolEntry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapBoolBoolEntry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapBoolBoolEntry =
-    TestAllTypesProto2.MapBoolBoolEntry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapBoolBoolEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapBoolBoolEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapBoolBoolEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapBoolBoolEntry {
-    val mapper = json.parse(TestAllTypesProto2.MapBoolBoolEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MapStringStringEntry?.orDefault() = this ?: TestAllTypesProto2.MapStringStringEntry.defaultInstance
 
 private fun TestAllTypesProto2.MapStringStringEntry.protoMergeImpl(plus: TestAllTypesProto2.MapStringStringEntry?): TestAllTypesProto2.MapStringStringEntry = plus?.copy(
@@ -2804,26 +1798,6 @@ private fun TestAllTypesProto2.MapStringStringEntry.Companion.protoUnmarshalImpl
         18 -> value = protoUnmarshal.readString()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MapStringStringEntry.toJsonMapperImpl(): TestAllTypesProto2.MapStringStringEntry.JsonMapper =
-    TestAllTypesProto2.MapStringStringEntry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapStringStringEntry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapStringStringEntry =
-    TestAllTypesProto2.MapStringStringEntry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapStringStringEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapStringStringEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapStringStringEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapStringStringEntry {
-    val mapper = json.parse(TestAllTypesProto2.MapStringStringEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapStringBytesEntry?.orDefault() = this ?: TestAllTypesProto2.MapStringBytesEntry.defaultInstance
@@ -2859,26 +1833,6 @@ private fun TestAllTypesProto2.MapStringBytesEntry.Companion.protoUnmarshalImpl(
     }
 }
 
-private fun TestAllTypesProto2.MapStringBytesEntry.toJsonMapperImpl(): TestAllTypesProto2.MapStringBytesEntry.JsonMapper =
-    TestAllTypesProto2.MapStringBytesEntry.JsonMapper(
-        key,
-        value
-    )
-
-private fun TestAllTypesProto2.MapStringBytesEntry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapStringBytesEntry =
-    TestAllTypesProto2.MapStringBytesEntry(
-        key = key ?: null,
-        value = value ?: null
-    )
-
-private fun TestAllTypesProto2.MapStringBytesEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapStringBytesEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapStringBytesEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapStringBytesEntry {
-    val mapper = json.parse(TestAllTypesProto2.MapStringBytesEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MapStringNestedMessageEntry?.orDefault() = this ?: TestAllTypesProto2.MapStringNestedMessageEntry.defaultInstance
 
 private fun TestAllTypesProto2.MapStringNestedMessageEntry.protoMergeImpl(plus: TestAllTypesProto2.MapStringNestedMessageEntry?): TestAllTypesProto2.MapStringNestedMessageEntry = plus?.copy(
@@ -2910,26 +1864,6 @@ private fun TestAllTypesProto2.MapStringNestedMessageEntry.Companion.protoUnmars
         18 -> value = protoUnmarshal.readMessage(pbandk.conformance.pb.TestAllTypesProto2.NestedMessage.Companion)
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MapStringNestedMessageEntry.toJsonMapperImpl(): TestAllTypesProto2.MapStringNestedMessageEntry.JsonMapper =
-    TestAllTypesProto2.MapStringNestedMessageEntry.JsonMapper(
-        key,
-        value?.toJsonMapper()
-    )
-
-private fun TestAllTypesProto2.MapStringNestedMessageEntry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapStringNestedMessageEntry =
-    TestAllTypesProto2.MapStringNestedMessageEntry(
-        key = key ?: null,
-        value = value?.toMessage()
-    )
-
-private fun TestAllTypesProto2.MapStringNestedMessageEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapStringNestedMessageEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapStringNestedMessageEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapStringNestedMessageEntry {
-    val mapper = json.parse(TestAllTypesProto2.MapStringNestedMessageEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapStringForeignMessageEntry?.orDefault() = this ?: TestAllTypesProto2.MapStringForeignMessageEntry.defaultInstance
@@ -2965,26 +1899,6 @@ private fun TestAllTypesProto2.MapStringForeignMessageEntry.Companion.protoUnmar
     }
 }
 
-private fun TestAllTypesProto2.MapStringForeignMessageEntry.toJsonMapperImpl(): TestAllTypesProto2.MapStringForeignMessageEntry.JsonMapper =
-    TestAllTypesProto2.MapStringForeignMessageEntry.JsonMapper(
-        key,
-        value?.toJsonMapper()
-    )
-
-private fun TestAllTypesProto2.MapStringForeignMessageEntry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapStringForeignMessageEntry =
-    TestAllTypesProto2.MapStringForeignMessageEntry(
-        key = key ?: null,
-        value = value?.toMessage()
-    )
-
-private fun TestAllTypesProto2.MapStringForeignMessageEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapStringForeignMessageEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapStringForeignMessageEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapStringForeignMessageEntry {
-    val mapper = json.parse(TestAllTypesProto2.MapStringForeignMessageEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MapStringNestedEnumEntry?.orDefault() = this ?: TestAllTypesProto2.MapStringNestedEnumEntry.defaultInstance
 
 private fun TestAllTypesProto2.MapStringNestedEnumEntry.protoMergeImpl(plus: TestAllTypesProto2.MapStringNestedEnumEntry?): TestAllTypesProto2.MapStringNestedEnumEntry = plus?.copy(
@@ -3016,26 +1930,6 @@ private fun TestAllTypesProto2.MapStringNestedEnumEntry.Companion.protoUnmarshal
         16 -> value = protoUnmarshal.readEnum(pbandk.conformance.pb.TestAllTypesProto2.NestedEnum.Companion)
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MapStringNestedEnumEntry.toJsonMapperImpl(): TestAllTypesProto2.MapStringNestedEnumEntry.JsonMapper =
-    TestAllTypesProto2.MapStringNestedEnumEntry.JsonMapper(
-        key,
-        value?.name
-    )
-
-private fun TestAllTypesProto2.MapStringNestedEnumEntry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapStringNestedEnumEntry =
-    TestAllTypesProto2.MapStringNestedEnumEntry(
-        key = key ?: null,
-        value = value?.let { pbandk.conformance.pb.TestAllTypesProto2.NestedEnum.fromName(it) } ?: null
-    )
-
-private fun TestAllTypesProto2.MapStringNestedEnumEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapStringNestedEnumEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapStringNestedEnumEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapStringNestedEnumEntry {
-    val mapper = json.parse(TestAllTypesProto2.MapStringNestedEnumEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MapStringForeignEnumEntry?.orDefault() = this ?: TestAllTypesProto2.MapStringForeignEnumEntry.defaultInstance
@@ -3071,26 +1965,6 @@ private fun TestAllTypesProto2.MapStringForeignEnumEntry.Companion.protoUnmarsha
     }
 }
 
-private fun TestAllTypesProto2.MapStringForeignEnumEntry.toJsonMapperImpl(): TestAllTypesProto2.MapStringForeignEnumEntry.JsonMapper =
-    TestAllTypesProto2.MapStringForeignEnumEntry.JsonMapper(
-        key,
-        value?.name
-    )
-
-private fun TestAllTypesProto2.MapStringForeignEnumEntry.JsonMapper.toMessageImpl(): TestAllTypesProto2.MapStringForeignEnumEntry =
-    TestAllTypesProto2.MapStringForeignEnumEntry(
-        key = key ?: null,
-        value = value?.let { pbandk.conformance.pb.ForeignEnumProto2.fromName(it) } ?: null
-    )
-
-private fun TestAllTypesProto2.MapStringForeignEnumEntry.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MapStringForeignEnumEntry.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MapStringForeignEnumEntry.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MapStringForeignEnumEntry {
-    val mapper = json.parse(TestAllTypesProto2.MapStringForeignEnumEntry.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.Data?.orDefault() = this ?: TestAllTypesProto2.Data.defaultInstance
 
 private fun TestAllTypesProto2.Data.protoMergeImpl(plus: TestAllTypesProto2.Data?): TestAllTypesProto2.Data = plus?.copy(
@@ -3124,26 +1998,6 @@ private fun TestAllTypesProto2.Data.Companion.protoUnmarshalImpl(protoUnmarshal:
     }
 }
 
-private fun TestAllTypesProto2.Data.toJsonMapperImpl(): TestAllTypesProto2.Data.JsonMapper =
-    TestAllTypesProto2.Data.JsonMapper(
-        groupInt32,
-        groupUint32
-    )
-
-private fun TestAllTypesProto2.Data.JsonMapper.toMessageImpl(): TestAllTypesProto2.Data =
-    TestAllTypesProto2.Data(
-        groupInt32 = groupInt32 ?: null,
-        groupUint32 = groupUint32 ?: null
-    )
-
-private fun TestAllTypesProto2.Data.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.Data.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.Data.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.Data {
-    val mapper = json.parse(TestAllTypesProto2.Data.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MessageSetCorrect?.orDefault() = this ?: TestAllTypesProto2.MessageSetCorrect.defaultInstance
 
 private fun TestAllTypesProto2.MessageSetCorrect.protoMergeImpl(plus: TestAllTypesProto2.MessageSetCorrect?): TestAllTypesProto2.MessageSetCorrect = plus?.copy(
@@ -3165,22 +2019,6 @@ private fun TestAllTypesProto2.MessageSetCorrect.Companion.protoUnmarshalImpl(pr
         0 -> return TestAllTypesProto2.MessageSetCorrect(protoUnmarshal.unknownFields())
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun TestAllTypesProto2.MessageSetCorrect.toJsonMapperImpl(): TestAllTypesProto2.MessageSetCorrect.JsonMapper =
-    TestAllTypesProto2.MessageSetCorrect.JsonMapper(
-    )
-
-private fun TestAllTypesProto2.MessageSetCorrect.JsonMapper.toMessageImpl(): TestAllTypesProto2.MessageSetCorrect =
-    TestAllTypesProto2.MessageSetCorrect(
-    )
-
-private fun TestAllTypesProto2.MessageSetCorrect.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MessageSetCorrect.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MessageSetCorrect.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MessageSetCorrect {
-    val mapper = json.parse(TestAllTypesProto2.MessageSetCorrect.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun TestAllTypesProto2.MessageSetCorrectExtension1?.orDefault() = this ?: TestAllTypesProto2.MessageSetCorrectExtension1.defaultInstance
@@ -3211,24 +2049,6 @@ private fun TestAllTypesProto2.MessageSetCorrectExtension1.Companion.protoUnmars
     }
 }
 
-private fun TestAllTypesProto2.MessageSetCorrectExtension1.toJsonMapperImpl(): TestAllTypesProto2.MessageSetCorrectExtension1.JsonMapper =
-    TestAllTypesProto2.MessageSetCorrectExtension1.JsonMapper(
-        str
-    )
-
-private fun TestAllTypesProto2.MessageSetCorrectExtension1.JsonMapper.toMessageImpl(): TestAllTypesProto2.MessageSetCorrectExtension1 =
-    TestAllTypesProto2.MessageSetCorrectExtension1(
-        str = str ?: null
-    )
-
-private fun TestAllTypesProto2.MessageSetCorrectExtension1.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MessageSetCorrectExtension1.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MessageSetCorrectExtension1.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MessageSetCorrectExtension1 {
-    val mapper = json.parse(TestAllTypesProto2.MessageSetCorrectExtension1.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun TestAllTypesProto2.MessageSetCorrectExtension2?.orDefault() = this ?: TestAllTypesProto2.MessageSetCorrectExtension2.defaultInstance
 
 private fun TestAllTypesProto2.MessageSetCorrectExtension2.protoMergeImpl(plus: TestAllTypesProto2.MessageSetCorrectExtension2?): TestAllTypesProto2.MessageSetCorrectExtension2 = plus?.copy(
@@ -3257,24 +2077,6 @@ private fun TestAllTypesProto2.MessageSetCorrectExtension2.Companion.protoUnmars
     }
 }
 
-private fun TestAllTypesProto2.MessageSetCorrectExtension2.toJsonMapperImpl(): TestAllTypesProto2.MessageSetCorrectExtension2.JsonMapper =
-    TestAllTypesProto2.MessageSetCorrectExtension2.JsonMapper(
-        i
-    )
-
-private fun TestAllTypesProto2.MessageSetCorrectExtension2.JsonMapper.toMessageImpl(): TestAllTypesProto2.MessageSetCorrectExtension2 =
-    TestAllTypesProto2.MessageSetCorrectExtension2(
-        i = i ?: null
-    )
-
-private fun TestAllTypesProto2.MessageSetCorrectExtension2.jsonMarshalImpl(json: Json): String =
-    json.stringify(TestAllTypesProto2.MessageSetCorrectExtension2.JsonMapper.serializer(), toJsonMapper())
-
-private fun TestAllTypesProto2.MessageSetCorrectExtension2.Companion.jsonUnmarshalImpl(json: Json, data: String): TestAllTypesProto2.MessageSetCorrectExtension2 {
-    val mapper = json.parse(TestAllTypesProto2.MessageSetCorrectExtension2.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun ForeignMessageProto2?.orDefault() = this ?: ForeignMessageProto2.defaultInstance
 
 private fun ForeignMessageProto2.protoMergeImpl(plus: ForeignMessageProto2?): ForeignMessageProto2 = plus?.copy(
@@ -3301,24 +2103,6 @@ private fun ForeignMessageProto2.Companion.protoUnmarshalImpl(protoUnmarshal: pb
         8 -> c = protoUnmarshal.readInt32()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun ForeignMessageProto2.toJsonMapperImpl(): ForeignMessageProto2.JsonMapper =
-    ForeignMessageProto2.JsonMapper(
-        c
-    )
-
-private fun ForeignMessageProto2.JsonMapper.toMessageImpl(): ForeignMessageProto2 =
-    ForeignMessageProto2(
-        c = c ?: null
-    )
-
-private fun ForeignMessageProto2.jsonMarshalImpl(json: Json): String =
-    json.stringify(ForeignMessageProto2.JsonMapper.serializer(), toJsonMapper())
-
-private fun ForeignMessageProto2.Companion.jsonUnmarshalImpl(json: Json, data: String): ForeignMessageProto2 {
-    val mapper = json.parse(ForeignMessageProto2.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
 
 fun UnknownToTestAllTypes?.orDefault() = this ?: UnknownToTestAllTypes.defaultInstance
@@ -3370,32 +2154,6 @@ private fun UnknownToTestAllTypes.Companion.protoUnmarshalImpl(protoUnmarshal: p
     }
 }
 
-private fun UnknownToTestAllTypes.toJsonMapperImpl(): UnknownToTestAllTypes.JsonMapper =
-    UnknownToTestAllTypes.JsonMapper(
-        optionalInt32,
-        optionalString,
-        nestedMessage?.toJsonMapper(),
-        optionalBool,
-        repeatedInt32
-    )
-
-private fun UnknownToTestAllTypes.JsonMapper.toMessageImpl(): UnknownToTestAllTypes =
-    UnknownToTestAllTypes(
-        optionalInt32 = optionalInt32 ?: null,
-        optionalString = optionalString ?: null,
-        nestedMessage = nestedMessage?.toMessage(),
-        optionalBool = optionalBool ?: null,
-        repeatedInt32 = repeatedInt32 ?: emptyList()
-    )
-
-private fun UnknownToTestAllTypes.jsonMarshalImpl(json: Json): String =
-    json.stringify(UnknownToTestAllTypes.JsonMapper.serializer(), toJsonMapper())
-
-private fun UnknownToTestAllTypes.Companion.jsonUnmarshalImpl(json: Json, data: String): UnknownToTestAllTypes {
-    val mapper = json.parse(UnknownToTestAllTypes.JsonMapper.serializer(), data)
-    return mapper.toMessage()
-}
-
 fun UnknownToTestAllTypes.OptionalGroup?.orDefault() = this ?: UnknownToTestAllTypes.OptionalGroup.defaultInstance
 
 private fun UnknownToTestAllTypes.OptionalGroup.protoMergeImpl(plus: UnknownToTestAllTypes.OptionalGroup?): UnknownToTestAllTypes.OptionalGroup = plus?.copy(
@@ -3422,22 +2180,4 @@ private fun UnknownToTestAllTypes.OptionalGroup.Companion.protoUnmarshalImpl(pro
         8 -> a = protoUnmarshal.readInt32()
         else -> protoUnmarshal.unknownField()
     }
-}
-
-private fun UnknownToTestAllTypes.OptionalGroup.toJsonMapperImpl(): UnknownToTestAllTypes.OptionalGroup.JsonMapper =
-    UnknownToTestAllTypes.OptionalGroup.JsonMapper(
-        a
-    )
-
-private fun UnknownToTestAllTypes.OptionalGroup.JsonMapper.toMessageImpl(): UnknownToTestAllTypes.OptionalGroup =
-    UnknownToTestAllTypes.OptionalGroup(
-        a = a ?: null
-    )
-
-private fun UnknownToTestAllTypes.OptionalGroup.jsonMarshalImpl(json: Json): String =
-    json.stringify(UnknownToTestAllTypes.OptionalGroup.JsonMapper.serializer(), toJsonMapper())
-
-private fun UnknownToTestAllTypes.OptionalGroup.Companion.jsonUnmarshalImpl(json: Json, data: String): UnknownToTestAllTypes.OptionalGroup {
-    val mapper = json.parse(UnknownToTestAllTypes.OptionalGroup.JsonMapper.serializer(), data)
-    return mapper.toMessage()
 }
